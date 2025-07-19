@@ -22,29 +22,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Carousel
-const carousel = document.getElementById('carousel');
-const dots = document.querySelectorAll('.carousel-dot');
 let currentSlide = 0;
-const totalSlides = dots.length;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
+const track = document.querySelector('.carousel-track');
+const dots = document.querySelectorAll('.dot');
 
-function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
-    
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === slideIndex);
-    });
+function showSlide(index) {
+  currentSlide = index;
+  track.style.transform = `translateX(-${index * 100}%)`;
+
+  // Atualiza os dots
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
 }
 
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+}
+
+// Clique nos dots
 dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
+  dot.addEventListener('click', () => showSlide(index));
 });
 
-// Auto-advance carousel
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    goToSlide(currentSlide);
-}, 5000);
+
+// Inicializa o primeiro slide corretamente
+showSlide(0);
+
 
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
