@@ -260,6 +260,11 @@ margin-bottom: 1.5rem;
     top: 60px;
 }
 
+.block-right-bottom{
+    bottom: 60px;
+    top: unset;
+}
+
 .carousel-dots {
   display: flex;
   justify-content: center;
