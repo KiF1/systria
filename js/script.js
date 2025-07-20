@@ -52,6 +52,8 @@ dots.forEach((dot, index) => {
 // Inicializa o primeiro slide corretamente
 showSlide(0);
 
+setInterval(nextSlide, 5000);
+
 
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
